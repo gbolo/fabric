@@ -194,7 +194,7 @@ func (vm *DockerVM) Start(ctxt context.Context, ccid ccintf.CCID, args []string,
 	// Baohua: getDockerHostConfig() will be ignored when communicating with docker API 1.24+.
 	// I keep it here for a short-term compatibility.
 	// See https://goo.gl/ZvtkKm for more details.
-	err = client.StartContainer(containerID, getDockerHostConfig())
+	err = client.StartContainer(containerID)
 	if err != nil {
 		dockerLogger.Errorf("start-could not start container %s", err)
 		return err
