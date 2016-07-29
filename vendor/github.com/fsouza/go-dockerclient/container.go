@@ -495,8 +495,9 @@ type HostConfig struct {
 //
 // See https://goo.gl/MrBAJv for more details.
 func (c *Client) StartContainer(id string) error {
+        var opts doOptions
 	path := "/containers/" + id + "/start"
-	resp, err := c.do("POST", path)
+	resp, err := c.do("POST", path, opts)
 	if err != nil {
 		if e, ok := err.(*Error); ok && e.Status == http.StatusNotFound {
 			return &NoSuchContainer{ID: id, Err: err}
