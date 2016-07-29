@@ -494,9 +494,9 @@ type HostConfig struct {
 // StartContainer starts a container, returning an error in case of failure.
 //
 // See https://goo.gl/MrBAJv for more details.
-func (c *Client) StartContainer(id string, hostConfig *HostConfig) error {
+func (c *Client) StartContainer(id string) error {
 	path := "/containers/" + id + "/start"
-	resp, err := c.do("POST", path, doOptions{data: hostConfig, forceJSON: true})
+	resp, err := c.do("POST", path)
 	if err != nil {
 		if e, ok := err.(*Error); ok && e.Status == http.StatusNotFound {
 			return &NoSuchContainer{ID: id, Err: err}
